@@ -1,0 +1,50 @@
+# DNA PRIMER DESIGNING 
+# MOLDULE 1: DNA PRIMER ANALYSIS 
+print ("========================================")
+print ("       DNA PRIMER DESIGNING TOOL        ")
+print ("========================================")
+
+# Step 1: Accept Dna sequence from user
+dna = input("\nEnter your DNA sequence: ")
+
+# Step 2: Convert sequence into uppercase
+dna = dna.upper()
+
+# Step 3: Validate the sequence 
+valid_bases = ["A", "T", "G", "C"]
+
+for nucleotide in dna: 
+       if nucleotide not in valid_bases:
+           print ("INVALID SEQUENCE")
+           exit()
+
+# Step 4: Calculating DNA sequence length
+length = len(dna)
+
+# Step 5: Calculating Each Nucleotide count
+a_count = dna.count("A")
+t_count = dna.count("T")
+g_count = dna.count("G")
+c_count = dna.count("C")
+
+# Step 6: Calculating GC content 
+gc_content = ((g_count + c_count)/length) * 100
+
+# Step 7: Display results
+
+print("\n========== DNA ANALYSIS ===========")
+
+print("DNA Sequence:", dna)
+
+print("Sequence Length:", length, "bp")
+
+print("\nNucleotide Composition:")
+
+print("Adenine (A):", a_count)
+print("Thymine (T):", t_count)
+print("Guanine (G):", g_count)
+print("Cytosine (C):", c_count)
+
+print("\nGC Content: {:.2f}%".format(gc_content))
+
+print("==================================")
