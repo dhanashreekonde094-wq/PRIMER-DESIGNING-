@@ -13,38 +13,114 @@ dna = dna.upper()
 # Step 3: Validate the sequence 
 valid_bases = ["A", "T", "G", "C"]
 
+if len(dna) == 0:
+    print("Error: DNA sequence cannot be empty!")
+    exit()
+
 for nucleotide in dna: 
        if nucleotide not in valid_bases:
            print ("INVALID SEQUENCE")
            exit()
 
-# Step 4: Calculating DNA sequence length
-length = len(dna)
+# Step 4: Define primer length range
+min_length = 18
+max_length = 25
 
-# Step 5: Calculating Each Nucleotide count
-a_count = dna.count("A")
-t_count = dna.count("T")
-g_count = dna.count("G")
-c_count = dna.count("C")
+# Step 5: Store suitable primer candidates 
+candidates = []
 
-# Step 6: Calculating GC content 
-gc_content = ((g_count + c_count)/length) * 100
+# STEP 6:  Scan DNA sequence for different primer lengths
 
-# Step 7: Display results
+for primer_length in range(min_length, max_length + 1):
 
-print("\n========== DNA ANALYSIS ===========")
+    # Check whether sequence is long enough
+    if len(dna) < primer_length:
+        continue
 
-print("DNA Sequence:", dna)
+    # Sliding window approach 
+    for start in range (len(dna) - primer_length + 1):
+    end = start + primer_length
 
-print("Sequence Length:", length, "bp")
+    # Extracting the primer 
+    primer = dna[start:end]
 
-print("\nNucleotide Composition:")
+    # Check the first and last nucleotide 
+    first_base = [0]
+    Last_base = [-1]
 
-print("Adenine (A):", a_count)
-print("Thymine (T):", t_count)
-print("Guanine (G):", g_count)
-print("Cytosine (C):", c_count)
+    if first_base not in ["G", "C"]
+        continue
+    if last_base not in ["G", "C"]
+        continue
 
-print("\nGC Content: {:.2f}%".format(gc_content))
 
-print("==================================")
+     # Step 7: Calculating Each Nucleotide count
+     a_count = dna.count("A")
+     t_count = dna.count("T")
+     g_count = dna.count("G")
+     c_count = dna.count("C")
+
+     # Step 8: Calculating GC content 
+     gc_content = ((g_count + c_count)/length) * 100
+
+     # Step 9: Calculating melting temperature 
+     tm = 2 * (g_count + c_count) + 4 * (g_count + c_count)
+
+     # STEP 10: Store candidate information
+
+        candidates.append({
+            "Start": start + 1,
+            "End": end,
+            "Length": primer_length,
+            "Sequence": primer,
+            "GC%": gc_content,
+            "Tm": tm
+        })
+
+# STEP 11: Display results in tabular format
+
+print("\n" + "=" * 75)
+print("                 PRIMER CANDIDATE ANALYSIS")
+print("=" * 75)
+
+if len(candidates) == 0:
+
+    print("\nNo suitable primer candidates found.")
+    print("Try providing a longer DNA sequence.")
+
+else:
+
+    # Display table headings
+
+    print(
+        f"{'No.':<5}"
+        f"{'Start':<8}"
+        f"{'End':<8}"
+        f"{'Length':<9}"
+        f"{'Sequence':<30}"
+        f"{'GC %':<10}"
+        f"{'Tm (°C)':<10}"
+    )
+
+    print("-" * 80)
+
+    # Display each candidate
+
+    for i, candidate in enumerate(candidates, start=1):
+
+        print(
+            f"{i:<5}"
+            f"{candidate['Start']:<8}"
+            f"{candidate['End']:<8}"
+            f"{candidate['Length']:<9}"
+            f"{candidate['Sequence']:<30}"
+            f"{candidate['GC%']:<10.2f}"
+            f"{candidate['Tm']:<10}"
+        )
+
+    print("-" * 80)
+
+    print("\nTotal suitable candidates:", len(candidates))
+
+print("\nAnalysis completed.")
+print("=" * 75)
