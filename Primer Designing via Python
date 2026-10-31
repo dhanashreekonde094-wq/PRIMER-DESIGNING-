@@ -39,19 +39,19 @@ for primer_length in range(min_length, max_length + 1):
 
 # Sliding window approach 
     for start in range (len(dna) - primer_length + 1):
-    end = start + primer_length
+        end = start + primer_length
 
-    # Extracting the primer 
-    primer = dna[start:end]
+        # Extracting the primer 
+        primer = dna[start:end]
 
-    # Check the first and last nucleotide 
-    first_base = [0]
-    Last_base = [-1]
+        # Check the first and last nucleotide 
+        first_base = primer[0]
+        Last_base = primer[-1]
 
-    if first_base not in ["G", "C"]
-        continue
-    if last_base not in ["G", "C"]
-        continue
+        if first_base not in ["G", "C"]:
+            continue
+        if last_base not in ["G", "C"]:
+            continue
 
 
      # Step 7: Calculating Each Nucleotide count
