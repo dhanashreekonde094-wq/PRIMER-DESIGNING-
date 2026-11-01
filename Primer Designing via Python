@@ -63,17 +63,18 @@ for start in range(len(dna) - primer_length + 1):
     # Step 8: Calculating GC content
     gc_content = ((g_count + c_count) / primer_length) * 100
 
-    # Step 9: Calculating melting temperature
+    # STEP 9: Calculating melting temperature
     tm = 2 * (a_count + t_count) + 4 * (g_count + c_count)
+
     # STEP 10: Store candidate information
-        candidates.append({
-            "Start": start + 1,
-            "End": end,
-            "Length": primer_length,
-            "Sequence": primer,
-            "GC%": gc_content,
-            "Tm": tm
-        })
+    candidates.append({
+        "Start": start + 1,
+        "End": end,
+        "Length": primer_length,
+        "Sequence": primer,
+        "GC%": gc_content,
+        "Tm": tm
+    })
 # STEP 11: Display results in tabular format
 
 print("\n" + "=" * 75)
