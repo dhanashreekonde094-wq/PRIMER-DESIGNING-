@@ -37,35 +37,34 @@ for primer_length in range(min_length, max_length + 1):
     if len(dna) < primer_length:
         continue
 
-# Sliding window approach 
-    for start in range (len(dna) - primer_length + 1):
-        end = start + primer_length
+# Sliding window approach
+for start in range(len(dna) - primer_length + 1):
+    end = start + primer_length
 
-        # Extracting the primer 
-        primer = dna[start:end]
+    # Extracting the primer
+    primer = dna[start:end]
 
-        # Check the first and last nucleotide 
-        first_base = primer[0]
-        Last_base = primer[-1]
+    # Check the first and last nucleotide
+    first_base = primer[0]
+    last_base = primer[-1]
 
-        if first_base not in ["G", "C"]:
-            continue
-        if last_base not in ["G", "C"]:
-            continue
+    if first_base not in ["G", "C"]:
+        continue
 
+    if last_base not in ["G", "C"]:
+        continue
 
-     # Step 7: Calculating Each Nucleotide count
-     a_count = dna.count("A")
-     t_count = dna.count("T")
-     g_count = dna.count("G")
-     c_count = dna.count("C")
+    # Step 7: Calculating Each Nucleotide count
+    a_count = primer.count("A")
+    t_count = primer.count("T")
+    g_count = primer.count("G")
+    c_count = primer.count("C")
 
-     # Step 8: Calculating GC content 
-     gc_content = ((g_count + c_count)/length) * 100
+    # Step 8: Calculating GC content
+    gc_content = ((g_count + c_count) / primer_length) * 100
 
-     # Step 9: Calculating melting temperature 
-     tm = 2 * (g_count + c_count) + 4 * (g_count + c_count)
-
+    # Step 9: Calculating melting temperature
+    tm = 2 * (a_count + t_count) + 4 * (g_count + c_count)
      # STEP 10: Store candidate information
 
         candidates.append({
